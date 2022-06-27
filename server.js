@@ -1,7 +1,6 @@
 const express = require("express")
 const app = express()
 const cr = require("./credentials.json")
-const ind = require("./mysql.js")
 app.get('/', (req,res) => {
   res.send("Parameters: query,username,password. Use POST /mysql.")
 },
