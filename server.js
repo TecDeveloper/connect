@@ -18,14 +18,18 @@ app.post('/mysql', (req,res) => {
    password : 'toor',
    database : 'main'
  });
- 
- connection.connect();
- 
- connection.query(`${query}`, function (results) {
-   return results[0]
- });
- 
-connection.end();
+
+ connection.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!"); 
+  connection.query(`${query}`, function (err,results) {
+      if (err) throw err;
+      if(results.length > 0) {
+             return results;
+         } else {
+             console.log('No data');
+         }
+  });
 }
   if (usr === cr.username) {
     if (pass === cr.password) {
