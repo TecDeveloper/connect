@@ -5,18 +5,18 @@ app.get('/', (req,res) => {
   res.send("Parameters: query,username,password. Use POST /mysql.")
 },
 
-app.post('/mysql', (req,res) => {
+app.post('/mysql', function (req,res) {
   let usr = req.query.username
   let pass = req.query.password
   let query = req.query.query
   function exe(query) {
-  var mysql      = require('mysql');
-  var connection = mysql.createConnection({
-   host     : 'ip',
-   user     : 'root',
-   password : 'toor',
-   database : 'main'
- });
+    var mysql      = require('mysql');
+    var connection = mysql.createConnection({
+      host     : 'creation-db.ca6wphtfe434.me-south-1.rds.amazonaws.com',
+      user     : 'phone',
+      password : process.env.PASS,
+      database : 'main'
+    });
 
  connection.connect(function(err) {
   if (err) throw err;
@@ -29,7 +29,7 @@ app.post('/mysql', (req,res) => {
              console.log('No data');
          }
   });
-}
+ })}
   if (usr === cr.username) {
     if (pass === cr.password) {
       let result = exe(query)
@@ -42,6 +42,6 @@ app.post('/mysql', (req,res) => {
   } else {
     res.send("User couldn't be found")
   }
-}))
+  })
 
 app.listen(3000)
