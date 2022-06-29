@@ -34,6 +34,7 @@ app.post('/mysql', function (req,res) {
     if (pass === cr.password) {
       let result = exe(query)
       res.send({
+        
         result: `${result}`
       })
     } else {
@@ -67,8 +68,9 @@ app.post('/mysql', function (req,res) {
     if (pass === cr.password) {
       connection.query(`${reqquery}`, function (err,resu) {
       if (err) throw err;
+        let s = JSON.stringify(resul)
         res.send({
-  result: `${resu}`
+  result: `${s}`
         })})
     } else {
       res.send("Wrong password")
@@ -77,7 +79,5 @@ app.post('/mysql', function (req,res) {
     res.send("User couldn't be found")
   }
   })
-
-app.listen(3000)
 
 app.listen(3000)
